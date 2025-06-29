@@ -1,0 +1,46 @@
+{
+    "name": "kuba/sorted-linked-list",
+    "description": "Library providing SortedLinkedList (linked list that keeps values sorted).",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "kubawerlos/php-cs-fixer-config": "^5.2",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.1.17",
+        "phpstan/phpstan-phpunit": "^2.0.6",
+        "phpstan/phpstan-strict-rules": "^2.0.4",
+        "phpunit/phpunit": "^12.2.5",
+        "tomasvotruba/type-coverage": "^2.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SortedLinkedList\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "fix": [
+            "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+            "php-cs-fixer fix -vvv"
+        ],
+        "verify": [
+            "@composer validate --strict",
+            "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+            "php-cs-fixer check --ansi --show-progress=dots --diff --verbose",
+            "phpstan analyse --no-progress",
+            "phpunit"
+        ]
+    }
+}
